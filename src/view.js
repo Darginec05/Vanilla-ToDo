@@ -15,8 +15,8 @@ class View extends EventEmitter {
         const checkbox = createElement('input', { type: 'checkbox', className: 'checkbox', checked: todo.completed ? 'checked' : '' });
         const label = createElement('label', { className: 'title' }, todo.title);
         const editInput = createElement('input', { type: 'text', className: 'textfield' });
-        const editButton = createElement('button', { className: 'edit' }, 'Изменить');
-        const deleteButton = createElement('button', { className: 'remove' }, 'Удалить');
+        const editButton = createElement('button', { className: 'edit' }, 'Change');
+        const deleteButton = createElement('button', { className: 'remove' }, 'Remove');
         const item = createElement('li', { className: `todo-item${todo.completed ? ' completed': ''}`, 'data-id': todo.id }, checkbox, label, editInput, editButton, deleteButton);
 
         return this.addEventListeners(item);
@@ -41,7 +41,7 @@ class View extends EventEmitter {
     handleAdd(event) {
         event.preventDefault();
 
-        if (!this.input.value) return alert('Необходимо ввести название задачи.');
+        if (!this.input.value) return alert('Enter your task!');
 
         const value = this.input.value;
 
@@ -69,7 +69,7 @@ class View extends EventEmitter {
             this.emit('edit', { id, title });
         } else {
             input.value = label.textContent;
-            editButton.textContent = 'Сохранить';
+            editButton.textContent = 'Save';
             listItem.classList.add('editing');
         }
     }
@@ -115,7 +115,7 @@ class View extends EventEmitter {
         const editButton = listItem.querySelector('button.edit');
 
         label.textContent = todo.title;
-        editButton.textContent = 'Изменить';
+        editButton.textContent = 'Change';
         listItem.classList.remove('editing');
     }
 
